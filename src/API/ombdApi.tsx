@@ -1,23 +1,23 @@
 import * as process from "process";
 import {instanceOf} from "prop-types";
-import {SearchResult} from "@/interfaces/interfaces";
+import {ISearchResult} from "@/interfaces/interfaces";
 
 const apiURL: string = 'http://www.omdbapi.com/?apikey=' + process.env.NEXT_PUBLIC_OMDB_APIKEY ;
 
 
-interface Search {
-    Search: SearchResult[];
+interface ISearch {
+    Search: ISearchResult[];
 }
 
-interface FalseResponse {
+interface IFalseResponse {
     Error: string;
     Response: Boolean;
 }
 
-export const getMovieData = (movieId: string | string[]): Promise<string | SearchResult | FalseResponse> =>
+export const getMovieData = (movieId: string): Promise<string | ISearchResult | IFalseResponse> =>
     fetch(`${apiURL}&i=${movieId}&plot=full`)
         .then((res: Response) => res.json())
-        .then((data: SearchResult | FalseResponse | Error) => {
+        .then((data: ISearchResult | IFalseResponse | Error) => {
             if (data instanceof Error) {
                 return data.message
             }
@@ -28,10 +28,10 @@ export const getMovieData = (movieId: string | string[]): Promise<string | Searc
         })
 
 
-export const getTenMovies = (page = 1, search = 'star'): Promise<SearchResult[] | string> =>
+export const getTenMovies = (page = 1, search = 'star'): Promise<ISearchResult[] | string> =>
     fetch(`${apiURL}&s=${search}}&page=${page}`)
         .then((res: Response) => res.json())
-        .then((data: Search | FalseResponse | Error) => {
+        .then((data: ISearch | IFalseResponse | Error) => {
             if (data instanceof Error) {
                 return data.message
             }

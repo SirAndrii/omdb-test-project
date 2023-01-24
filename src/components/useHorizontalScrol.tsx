@@ -32,7 +32,7 @@ export function useHorizontalScroll() {
             const currentX = e.clientX;
             const xDiff = startX - currentX;
 
-            containerRef.current.scrollLeft += xDiff;
+            containerRef.current!.scrollLeft += xDiff;
             setStartX(currentX);
         }
 

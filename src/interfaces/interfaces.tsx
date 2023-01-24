@@ -1,15 +1,14 @@
-export interface SearchResult {
+export interface ISearchResult {
     Title: string;
     Year: string;
     imdbID: string;
     Type: string;
     Poster: string;
 }
-export interface MovieList {
+export interface IMovieList {
     title: string;
-
-    [movies: string]: SearchResult[] | string;
+    movies: ISearchResult[] | string;
 }
-export interface MovieLists {
-    movieLists: MovieList[];
+export interface IMovieLists {
+    movieLists: IMovieList[];
 }

@@ -1,19 +1,22 @@
 import {createContext, useState} from "react";
-import {SearchResult} from "@/interfaces/interfaces";
-
+import {ISearchResult} from "@/interfaces/interfaces";
 
 export const AppContext = createContext({})
 
-export const AppContextProvider = ({ children}) => {
-const [visitedMoviePages, setVisitedMoviePages] = useState<SearchResult[]>([]);
+export const AppContextProvider = ({children}) => {
+    const [visitedMoviePages, setVisitedMoviePages] = useState<ISearchResult[]>([]);
 
-const cacheVisitedMovie = (newMovie: SearchResult) => {
-    setVisitedMoviePages([...visitedMoviePages, newMovie])
-}
+    const cacheVisitedMovie = (newMovie: ISearchResult) => {
+        setVisitedMoviePages([...visitedMoviePages, newMovie])
+    }
 
-    return <AppContext.Provider
-        value={{visitedMoviePages, cacheVisitedMovie }}
-    >{children}</AppContext.Provider>
+    return (
+        <AppContext.Provider
+            value={{visitedMoviePages, cacheVisitedMovie}}
+        >
+            {children}
+        </AppContext.Provider>
+    )
 }
 
 

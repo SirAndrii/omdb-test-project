@@ -2,10 +2,10 @@
 import Head from "next/head"
 import {getTenMovies} from "@/API/ombdApi";
 
-import {MovieList as MovieListInterface, MovieLists, SearchResult} from "@/interfaces/interfaces";
+import {IMovieList, IMovieLists, ISearchResult} from "@/interfaces/interfaces";
 import MovieList from "@/components/home/movieList";
 
-export default function ListMovies({movieLists}: MovieLists) {
+export default function ListMovies({movieLists}: IMovieLists) {
 
     return (
         <>
@@ -19,7 +19,8 @@ export default function ListMovies({movieLists}: MovieLists) {
             <main>
                 <h1>Challenge project</h1>
                 {movieLists.map(
-                    (movieList: MovieListInterface, index: number) => <MovieList {...{movieList}} key={index} />
+                    (movieList: IMovieList, index: number) =>
+                        <MovieList key={index} title={movieList.title} movies={movieList.movies}/>
                 )}
             </main>
         </>
@@ -28,15 +29,15 @@ export default function ListMovies({movieLists}: MovieLists) {
 
 
 export async function getStaticProps() {
-    const tenMoviesStar: SearchResult[] | string = await getTenMovies(1, 'star')
-    const tenMoviesCat: SearchResult[] | string = await getTenMovies(1, 'cat')
+    const tenMoviesStar: ISearchResult[] | string = await getTenMovies(1, 'star')
+    const tenMoviesCat: ISearchResult[] | string = await getTenMovies(1, 'cat')
 
-    const MoviesAboutStar: MovieListInterface = {
+    const MoviesAboutStar: IMovieList = {
         title: 'Star',
         movies: tenMoviesStar
     }
 
-    const MoviesAboutCat: MovieListInterface = {
+    const MoviesAboutCat: IMovieList = {
         title: 'Cat',
         movies: tenMoviesCat
     }

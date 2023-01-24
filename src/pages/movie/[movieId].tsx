@@ -2,34 +2,28 @@ import Head from 'next/head'
 import {useRouter} from 'next/router'
 import {AppContext} from "@/context/app.context";
 import {useContext, useEffect, useState} from "react";
-import {SearchResult} from "@/interfaces/interfaces";
+import {ISearchResult} from "@/interfaces/interfaces";
 import {getMovieData} from "@/API/ombdApi";
 
 import styles from './movie.module.scss'
-
-interface IMovie extends SearchResult {
-    Released: string,
-    Runtime: string,
-    Actors: string,
-    Plot: string
-}
 
 export default function FilmInfo() {
     const router = useRouter();
     const {movieId} = router.query
 
     const [currentMovie, setCurrentMovie] = useState<IMovie | null>(null);
+    // @ts-ignore
     const {visitedMoviePages, cacheVisitedMovie} = useContext(AppContext)
 
 
     useEffect(() => {
-        const visitedMovie = visitedMoviePages.find(movie => movie?.imdbID === movieId)
+        const visitedMovie = visitedMoviePages.find((movie: IMovie) => movie.imdbID === movieId)
 
         if (visitedMovie && visitedMovie.Title) {
             setCurrentMovie(visitedMovie)
         } else {
             getMovieData(movieId).then(data => {
-                console.log(data)
+                console.log('fetched data')
                 cacheVisitedMovie(data)
             })
         }
@@ -66,5 +60,12 @@ export default function FilmInfo() {
 
         </main>
     )
+}
+
+interface IMovie extends ISearchResult {
+    Released: string,
+    Runtime: string,
+    Actors: string,
+    Plot: string
 }
 

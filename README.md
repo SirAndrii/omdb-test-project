@@ -21,5 +21,7 @@ or
 yarn dev
 ```
 
+#### ! can't use <Image /> for images because of Amazone CDN restrictions 
+
 Open http://localhost:3000 with your browser to see the result.
 

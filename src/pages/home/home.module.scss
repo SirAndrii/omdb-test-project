@@ -1,0 +1,32 @@
+$itemGrow: 1.2;
+$duration: 250ms;
+
+.wrapper {
+
+
+      scroll-behavior: smooth;
+
+      section {
+            display: flex;
+            width:100%;
+            overflow-x: hidden;
+            cursor: pointer;
+            .item {
+                  position: relative;
+
+                  margin: 20px 0;
+                  padding: 5px;
+                  transition: $duration all;
+
+                  img {
+                        width: 207px;
+                        height: 311px;
+                  }
+
+                  &:hover {
+                       // margin: 0 20px;
+                        transform: scale(1.1);
+                  }
+            }
+      }
+}

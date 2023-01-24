@@ -43,7 +43,7 @@ export default function FilmInfo() {
 
             <section className={styles.mainContent} aria-labelledby="main-content-label">
                 <div className={styles.leftCol}>
-                    <Image src={currentMovie.Poster} alt={`Movie Poster ${currentMovie.Title}`}/>
+                    <img src={currentMovie.Poster} alt={`Movie Poster ${currentMovie.Title}`}/>
                 </div>
                 <div className={styles.rightCol}>
                     <h1 id="main-content-label">{currentMovie.Title}</h1>

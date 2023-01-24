@@ -2,7 +2,7 @@ import * as process from "process";
 import {instanceOf} from "prop-types";
 import {ISearchResult} from "@/interfaces/interfaces";
 
-const apiURL: string = 'http://www.omdbapi.com/?apikey=' + process.env.NEXT_PUBLIC_OMDB_APIKEY ;
+const apiURL: string = 'https://www.omdbapi.com/?apikey=' + process.env.NEXT_PUBLIC_OMDB_APIKEY ;
 
 
 interface ISearch {

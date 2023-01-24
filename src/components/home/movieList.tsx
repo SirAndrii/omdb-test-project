@@ -32,7 +32,7 @@ export default function MovieList(props: IMovieList) {
                                 href={`movie/${movie.imdbID}`}
                                 title={movie.Title}
                             >
-                                <Image src={movie.Poster} alt={movie.Title + ' Poster'}/>
+                                <img src={movie.Poster} alt={movie.Title + ' Poster'}/>
                             </Link>
                         </div>
                     )

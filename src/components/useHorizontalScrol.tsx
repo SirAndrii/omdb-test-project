@@ -10,14 +10,13 @@ export function useHorizontalScroll() {
     useEffect(() => {
         const container = containerRef.current!;
 
-        const handleMouseDown = (e: MouseEvent) => {
+        const handleMouseDown = (e: any): void => {
             e.preventDefault();
             setIsDown(true);
             setStartX(e.clientX);
-
         }
 
-        const handleMouseClick= (e: MouseEvent) => {
+        const handleMouseClick= (e: Event): void => {
             if (isMove && isDown)
             {e.preventDefault()};
             setIsMove(false);
@@ -25,7 +24,7 @@ export function useHorizontalScroll() {
             //containerRef.current.scrollLeft=0
         }
 
-        const handleMouseMove = (e: MouseEvent) => {
+        const handleMouseMove = (e: any): void => {
             //console.log(isMove,isDown)
             if(!isDown) return
             setIsMove(true);

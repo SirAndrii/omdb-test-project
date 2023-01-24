@@ -24,7 +24,7 @@ export const getMovieData = (movieId: string): Promise<string | ISearchResult | 
             if ("Response" in data && data.Response === false) {
                 return data.Error
             }
-            return data
+            return (data as ISearchResult)
         })
 
 
@@ -38,7 +38,7 @@ export const getTenMovies = (page = 1, search = 'star'): Promise<ISearchResult[]
             if ("Response" in data && data.Response === false) {
                 return data.Error
             }
-            return data.Search
+            return (data as ISearch).Search
         })
 
 

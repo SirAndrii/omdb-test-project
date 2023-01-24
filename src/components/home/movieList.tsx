@@ -2,6 +2,7 @@ import styles from "@/pages/home/home.module.scss";
 import {IMovieList, ISearchResult} from "@/interfaces/interfaces";
 import {useHorizontalScroll} from "@/components/useHorizontalScrol";
 import Link from "next/link";
+import Image from "next/image";
 
 
 export default function MovieList(props: IMovieList) {
@@ -31,7 +32,7 @@ export default function MovieList(props: IMovieList) {
                                 href={`movie/${movie.imdbID}`}
                                 title={movie.Title}
                             >
-                                <img src={movie.Poster}/>
+                                <Image src={movie.Poster} alt={movie.Title + ' Poster'}/>
                             </Link>
                         </div>
                     )

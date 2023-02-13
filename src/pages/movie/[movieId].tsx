@@ -5,13 +5,14 @@ import {useContext, useEffect, useState} from "react";
 import {ISearchResult} from "@/interfaces/interfaces";
 import {getMovieData} from "@/API/ombdApi";
 
-import styles from './movie.module.scss'
+import styles from '../../components/movie/movie.module.scss'
 import Image from "next/image";
+import MovieCard from "@/components/movie/movieCard";
 
 export default function FilmInfo() {
     const router = useRouter();
     const {movieId} = router.query
-
+//todo write interface for currentMovie
     const [currentMovie, setCurrentMovie] = useState<IMovie | null>(null);
     // @ts-ignore
     const {visitedMoviePages, cacheVisitedMovie} = useContext(AppContext)
@@ -25,7 +26,7 @@ export default function FilmInfo() {
                 setCurrentMovie(visitedMovie)
             } else {
                 getMovieData(movieId).then(data => {
-                    console.log('fetched data')
+                    console.log(data)
                     cacheVisitedMovie(data)
                 })
             }
@@ -41,29 +42,14 @@ export default function FilmInfo() {
                 <title>{currentMovie.Title}</title>
             </Head>
 
-            <section className={styles.mainContent} aria-labelledby="main-content-label">
-                <div className={styles.leftCol}>
-                    <img src={currentMovie.Poster} alt={`Movie Poster ${currentMovie.Title}`}/>
-                </div>
-                <div className={styles.rightCol}>
-                    <h1 id="main-content-label">{currentMovie.Title}</h1>
+            <MovieCard currentMovie={currentMovie} />
 
-                    <p>
-                        <strong>Released:</strong> {currentMovie.Released} | <strong>Runtime:</strong> {currentMovie.Runtime}
-                    </p>
-                    <p><strong>Actors:</strong> {currentMovie.Actors}</p>
-                    <p><strong>Plot:</strong> {currentMovie.Plot}</p>
-
-                    <button
-                        tabIndex={0}
-                        aria-label="Go back"
-                        onClick={() => router.back()}
-                    >Click here to go back
-                    </button>
-                </div>
-
-            </section>
-
+            <button
+                tabIndex={0}
+                aria-label="Go back"
+                onClick={() => router.back()}
+            >Click here to go back
+            </button>
         </main>
     )
 }

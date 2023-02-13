@@ -1,0 +1,42 @@
+
+.mainContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  & .leftCol, & .rightCol {
+    max-width: 500px;
+    padding: 20px;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  }
+
+  & .rightCol {
+    display: flex;
+    align-items: center;
+    row-gap: 20px;
+    flex-direction: column;
+
+    & button {
+      width: 80%;
+      margin: 20px auto;
+    }
+  }
+
+  & .leftCol img {
+    max-width: 500px;
+    margin: 0 auto;
+    @media (max-width: 480px) {
+      max-width: 80%
+    }
+  }
+}

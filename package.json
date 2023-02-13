@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "stylelint": "stylelint \"**/*.scss\" --fix"
   },
   "dependencies": {
     "@next/font": "13.1.4",
@@ -16,14 +17,15 @@
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.4",
     "next": "13.1.4",
+    "openai": "^3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.57.1",
     "typescript": "4.9.4",
-    "typescript-eslint": "latest",
-    "sass": "^1.57.1"
+    "typescript-eslint": "latest"
   },
   "devDependencies": {
-
-
+    "stylelint": "^14.1.0",
+    "stylelint-order": "^5.0.0"
   }
 }
